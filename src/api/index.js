@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const baseURL = 'https://api.metro.net/agencies/lametro-rail/routes/';
 // Used for line direction, ex. to Azusa or to Union Station
-const directionURl =
+const directionURL =
   'https://api.metro.net/agencies/lametro-rail/routes/804/runs/';
 const stopsURL =
   'https://api.metro.net/agencies/lametro-rail/routes/803/stops/';
@@ -21,7 +21,8 @@ export const fetchMetroLines = async () => {
 
 export const fetchDirections = async (lineID) => {
   try {
-    const { data } = await axios.get(`${directionURl}`);
+    const { data } = await axios.get(`${baseURL}${lineID}/runs/`);
+    // const { data } = await axios.get(`${directionURL}`);
     const modifiedData = data.items;
     return modifiedData;
   } catch (err) {
@@ -29,9 +30,9 @@ export const fetchDirections = async (lineID) => {
   }
 };
 
-export const fetchStops = async (lineID) => {
+export const fetchStations = async (lineID) => {
   try {
-    const { data } = await axios.get(`${stopsURL}`);
+    const { data } = await axios.get(`${baseURL}${lineID}/stops/`);
     const modifiedData = data.items;
     return modifiedData;
   } catch (err) {
@@ -39,9 +40,11 @@ export const fetchStops = async (lineID) => {
   }
 };
 
-export const fetchStationPredictions = async (lineID, stopID, direction) => {
+export const fetchStationPredictions = async (lineID, stationID) => {
   try {
-    const { data } = await axios.get(`${stationPredictionsURL}`);
+    const { data } = await axios.get(
+      `${baseURL}${lineID}/stops/${stationID}/predictions/`
+    );
     const modifiedData = data.items;
     return modifiedData;
   } catch (err) {
