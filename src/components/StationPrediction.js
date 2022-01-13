@@ -1,13 +1,16 @@
 import React from 'react';
+import '../styles/Display.css';
 
 export default function StationPrediction(props) {
-  const { stationTitle, times } = props;
+  const { metroLogoClass, stationTitle, times } = props;
+  const timesString = times.join(', ');
   return (
-    <div>
-      <h1>{stationTitle}</h1>
-      {times.map((time) => (
-        <p>{time}</p>
-      ))}
-    </div>
+    <tr className="table-row table-body-text">
+      <td>
+        <span className={`line-logo ${metroLogoClass}`}></span>
+        {stationTitle}
+      </td>
+      <td>{timesString}</td>
+    </tr>
   );
 }

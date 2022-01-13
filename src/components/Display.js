@@ -7,12 +7,14 @@ import {
 } from '../api';
 import Modal from './Modal';
 import StationPrediction from './StationPrediction';
+import '../styles/Display.css';
 
 export default function Display() {
   const [metroLines, setMetroLines] = useState([]);
   const [metroLine, setMetroLine] = useState(null);
 
-  // const [lineDirections, setLineDirections] = useState([]);
+  const [metroLogoClass, setMetroLogoClass] = useState('');
+
   const [lineDirections, setLineDirections] = useState(new Map());
 
   const [lineStations, setLineStations] = useState([]);
@@ -27,7 +29,6 @@ export default function Display() {
     const fetchLines = async () => {
       let lines = await fetchMetroLines();
       setMetroLines(lines);
-      // console.log(lines);
     };
 
     fetchLines();
@@ -35,10 +36,32 @@ export default function Display() {
 
   useEffect(() => {
     if (metroLine) {
+      switch (metroLine) {
+        case '801':
+          setMetroLogoClass('blue-logo');
+          break;
+        case '802':
+          setMetroLogoClass('red-logo');
+          break;
+        case '803':
+          setMetroLogoClass('green-logo');
+          break;
+        case '804':
+          setMetroLogoClass('gold-logo');
+          break;
+        case '805':
+          setMetroLogoClass('purple-logo');
+          break;
+        case '806':
+          setMetroLogoClass('expo-logo');
+          break;
+        default:
+          break;
+      }
+
       setLineDirections(new Map());
       const fetchLineValues = async () => {
         let directions = await fetchDirections(metroLine);
-        // setLineDirections(directions);
         for (let direction of directions) {
           if (direction.route_id[direction.route_id.length - 1] == 0) {
             setLineDirections(
@@ -47,7 +70,6 @@ export default function Display() {
             );
           }
         }
-        // console.log(directions);
         let stations = await fetchStations(metroLine);
         setLineStations(stations);
       };
@@ -61,29 +83,6 @@ export default function Display() {
       const fetchPredictions = async () => {
         let predictions = await fetchStationPredictions(metroLine, lineStation);
         setStationPredictions(predictions);
-
-        // for (let prediction of predictions) {
-        //   if (lineDirections.has(prediction.run_id)) {
-        //     let val;
-        //     if (stationPredictions[lineDirections.get(prediction.run_id)]) {
-        //       val = stationPredictions[lineDirections.get(prediction.run_id)];
-        //       val.push(prediction.minutes);
-        //       setStationPredictions((prev) => ({
-        //         ...prev,
-        //         [lineDirections.get(prediction.run_id)]: val,
-        //       }));
-        //     } else {
-        //       val = [prediction.minutes];
-        //       console.log(val);
-        //       setStationPredictions((prev) => ({
-        //         ...prev,
-        //         [lineDirections.get(prediction.run_id)]: val,
-        //       }));
-        //     }
-        //   }
-        // }
-
-        // console.log(predictions);
       };
 
       fetchPredictions();
@@ -94,9 +93,7 @@ export default function Display() {
     let dictions = {};
     for (let prediction of stationPredictions) {
       if (lineDirections.has(prediction.run_id)) {
-        // console.log(prediction);
         let val;
-
         if (dictions[lineDirections.get(prediction.run_id)]) {
           val = dictions[lineDirections.get(prediction.run_id)];
           val.push(prediction.minutes);
@@ -106,14 +103,33 @@ export default function Display() {
         }
       }
     }
-    console.log(dictions);
     setMappedPredictions(dictions);
   }, [stationPredictions, lineDirections]);
 
   return (
-    <div>
-      <h1>Hello</h1>
-      <button onClick={() => setModalIsOpen(true)}>Click</button>
+    <div class="display-container">
+      <table className="display-table">
+        <thead>
+          <tr className="table-row">
+            <th>Dest</th>
+            <th>Min</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.entries(mappedPredictions).map(([key, value]) => (
+            <StationPrediction
+              metroLogoClass={metroLogoClass}
+              stationTitle={key}
+              times={value}
+            />
+          ))}
+        </tbody>
+      </table>
+      <div className="footer">
+        <button className="modal-btn" onClick={() => setModalIsOpen(true)}>
+          Click
+        </button>
+      </div>
 
       {modalIsOpen && (
         <Modal
@@ -125,9 +141,6 @@ export default function Display() {
           setModalIsOpen={setModalIsOpen}
         />
       )}
-      {Object.entries(mappedPredictions).map(([key, value]) => (
-        <StationPrediction stationTitle={key} times={value} />
-      ))}
     </div>
   );
 }

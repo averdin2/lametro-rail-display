@@ -2,12 +2,12 @@ import axios from 'axios';
 
 const baseURL = 'https://api.metro.net/agencies/lametro-rail/routes/';
 // Used for line direction, ex. to Azusa or to Union Station
-const directionURL =
-  'https://api.metro.net/agencies/lametro-rail/routes/804/runs/';
-const stopsURL =
-  'https://api.metro.net/agencies/lametro-rail/routes/803/stops/';
-const stationPredictionsURL =
-  'https://api.metro.net/agencies/lametro-rail/routes/803/stops/80314/predictions/';
+// const directionURL =
+//   'https://api.metro.net/agencies/lametro-rail/routes/804/runs/';
+// const stopsURL =
+//   'https://api.metro.net/agencies/lametro-rail/routes/803/stops/';
+// const stationPredictionsURL =
+//   'https://api.metro.net/agencies/lametro-rail/routes/803/stops/80314/predictions/';
 
 export const fetchMetroLines = async () => {
   try {
