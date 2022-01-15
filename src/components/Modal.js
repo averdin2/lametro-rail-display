@@ -22,7 +22,7 @@ export default function Modal(props) {
   return (
     <div className="modalOverlay">
       <div className="modalContainer">
-        <button className="modalBtn" onClick={() => setModalIsOpen(false)}>
+        <button className="modalCloseBtn" onClick={() => setModalIsOpen(false)}>
           X
         </button>
         {activeForm === 0 && (

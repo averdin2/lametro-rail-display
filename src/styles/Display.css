@@ -5,7 +5,6 @@
 }
 
 .display-table {
-  /* flex: 1; */
   border-collapse: collapse;
   width: 100%;
 }
@@ -15,8 +14,29 @@
 }
 
 .modal-btn {
-  padding: 16px;
+  /* visibility: hidden; */
+  opacity: 0;
+  padding: 16px 26px;
   margin-bottom: 50px;
+  border: none;
+  border-radius: 3px;
+  font-family: DIN2014-Bold;
+  /* font-weight: bold; */
+  font-size: 1rem;
+  background-color: lightgray;
+  color: black;
+  cursor: pointer;
+  transition: opacity 0.5s;
+}
+
+.footer:hover > .modal-btn {
+  /* visibility: visible; */
+  opacity: 1;
+}
+
+.footer:hover > .modal-btn:hover {
+  background-color: gray;
+  color: white;
 }
 
 thead tr {

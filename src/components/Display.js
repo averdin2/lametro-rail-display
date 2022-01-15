@@ -127,7 +127,7 @@ export default function Display() {
       </table>
       <div className="footer">
         <button className="modal-btn" onClick={() => setModalIsOpen(true)}>
-          Click
+          Select Station
         </button>
       </div>
 
