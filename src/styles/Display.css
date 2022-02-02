@@ -60,35 +60,3 @@ tbody tr:nth-child(odd) {
 tbody tr:nth-child(even) {
   background-color: black;
 }
-
-.line-logo {
-  height: 130px;
-  width: 130px;
-  display: inline-block;
-  margin-top: 10px;
-  margin-left: 10px;
-}
-
-.blue-logo {
-  background-image: url(../assets/bluelogo.svg);
-}
-
-.red-logo {
-  background-image: url(../assets/redlogo.svg);
-}
-
-.green-logo {
-  background-image: url(../assets/greenlogo.svg);
-}
-
-.gold-logo {
-  background-image: url(../assets/goldlogo.svg);
-}
-
-.purple-logo {
-  background-image: url(../assets/purplelogo.svg);
-}
-
-.expo-logo {
-  background-image: url(../assets/expologo.svg);
-}
