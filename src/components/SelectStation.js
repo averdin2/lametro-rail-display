@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../styles/SelectFormStyles.css';
 
 export default function SelectStation(props) {
   const [station, setStation] = useState(null);
@@ -11,7 +12,7 @@ export default function SelectStation(props) {
   }
   return (
     <div>
-      <h1>Select Station Form</h1>
+      <h1 className="select-header">Select Station Form</h1>
       <form onSubmit={handleSubmit}>
         <select onChange={(e) => setStation(e.target.value)}>
           <option disabled selected>
@@ -25,7 +26,9 @@ export default function SelectStation(props) {
             </>
           ))}
         </select>
-        <button type="submit">Submit</button>
+        <button className="submit-btn" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );

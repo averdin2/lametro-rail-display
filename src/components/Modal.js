@@ -3,6 +3,7 @@ import SelectLine from './SelectLine';
 import SelectLineDirection from './SelectLineDirection';
 import SelectStation from './SelectStation';
 import '../styles/Modal.css';
+import '../styles/SelectFormStyles.css';
 
 export default function Modal(props) {
   const {
@@ -45,7 +46,11 @@ export default function Modal(props) {
             setLineStation={setLineStation}
           />
         )}
-        {activeForm > 0 && <button onClick={handlePrevious}>Previous</button>}
+        {activeForm > 0 && (
+          <button className="submit-btn" onClick={handlePrevious}>
+            Previous
+          </button>
+        )}
       </div>
     </div>
   );

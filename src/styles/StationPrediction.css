@@ -3,18 +3,10 @@
   align-items: center;
 }
 
-/* .logo-container {
-  position: relative;
-} */
-
 .line-logo {
   height: 130px;
   width: 130px;
   margin: 20px;
-  /* display: inline-block;
-  position: relative; */
-  /* margin-top: 10px;
-  margin-left: 10px; */
 }
 
 .blue-logo {

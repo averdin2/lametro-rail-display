@@ -10,7 +10,6 @@ export default function StationPrediction(props) {
       <td>
         <div className="line-title">
           <div className="logo-container">
-            {/* <span className={`line-logo ${metroLogoClass}`}></span> */}
             <div className={`line-logo ${metroLogoClass}`}></div>
           </div>
           <div className="title-container">{stationTitle}</div>
